@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Datos completos de todos los cursos por semestre
+    // Datos completos de todos los cursos por semestre (actualizados)
     const coursesData = [
         // 1° Semestre
         {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 'geometria-analitica',
-            name: 'Geometria analitica y vectorial',
+            name: 'Geometría analítica y vectorial',
             semester: 1,
             completed: false,
             unlocks: ['algebra-lineal1'],
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 'antropologia',
-            name: 'Antropologia cristiana',
+            name: 'Antropología cristiana',
             semester: 1,
             completed: false,
             unlocks: [],
@@ -38,39 +38,39 @@ document.addEventListener('DOMContentLoaded', function() {
         // 2° Semestre
         {
             id: 'calculo2',
-            name: 'Calculo 2',
+            name: 'Cálculo 2',
             semester: 2,
             completed: false,
-            unlocks: ['calculo3', 'estadistica1', 'metodos-numericos'],
+            unlocks: ['calculo-varias-variables', 'ecuaciones-diferenciales', 'probabilidades'],
             requirements: ['calculo1']
         },
         {
             id: 'algebra-lineal1',
-            name: 'Algebra Lineal 1',
+            name: 'Álgebra Lineal 1',
             semester: 2,
             completed: false,
-            unlocks: [],
+            unlocks: ['algebra-lineal2'],
             requirements: ['algebra', 'geometria-analitica']
         },
         {
             id: 'programacion',
-            name: 'Programacion',
+            name: 'Programación',
             semester: 2,
             completed: false,
             unlocks: ['metodos-numericos'],
             requirements: []
         },
         {
-            id: 'etica',
-            name: 'Etica cristiana',
+            id: 'tic-matematico',
+            name: 'TIC y quehacer matemático',
             semester: 2,
             completed: false,
             unlocks: [],
             requirements: []
         },
         {
-            id: 'formacion1',
-            name: 'Formacion fundamental 1',
+            id: 'etica',
+            name: 'Ética cristiana',
             semester: 2,
             completed: false,
             unlocks: [],
@@ -79,40 +79,40 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 3° Semestre
         {
-            id: 'calculo3',
-            name: 'Calculo 3',
+            id: 'calculo-varias-variables',
+            name: 'Cálculo en varias variables',
             semester: 3,
             completed: false,
-            unlocks: ['analisis-real'],
+            unlocks: ['analisis-real', 'geometria-diferencial', 'calculo4'],
+            requirements: ['calculo2']
+        },
+        {
+            id: 'algebra-lineal2',
+            name: 'Álgebra Lineal 2',
+            semester: 3,
+            completed: false,
+            unlocks: ['metodos-numericos'],
+            requirements: ['algebra-lineal1']
+        },
+        {
+            id: 'ecuaciones-diferenciales',
+            name: 'Ecuaciones diferenciales',
+            semester: 3,
+            completed: false,
+            unlocks: [],
             requirements: ['calculo2']
         },
         {
             id: 'teoria-numeros',
-            name: 'Teoria de numeros',
+            name: 'Teoría de números',
             semester: 3,
             completed: false,
             unlocks: ['estructuras-algebraicas1'],
             requirements: ['algebra']
         },
         {
-            id: 'metodos-numericos',
-            name: 'Metodos numericos y ecuaciones diferenciales',
-            semester: 3,
-            completed: false,
-            unlocks: ['tecnologia-ensenanza'],
-            requirements: ['calculo2', 'programacion']
-        },
-        {
-            id: 'estrategias-discursivas1',
-            name: 'Estrategias discursivas para acceder al conocimiento disciplinar',
-            semester: 3,
-            completed: false,
-            unlocks: ['estrategias-discursivas2'],
-            requirements: []
-        },
-        {
-            id: 'formacion2',
-            name: 'Formacion fundamental 2',
+            id: 'formacion1',
+            name: 'Formación fundamental 1',
             semester: 3,
             completed: false,
             unlocks: [],
@@ -121,296 +121,244 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 4° Semestre
         {
-            id: 'analisis-real',
-            name: 'Analisis real',
+            id: 'calculo4',
+            name: 'Cálculo 4',
             semester: 4,
             completed: false,
-            unlocks: ['didactica-calculo'],
-            requirements: ['calculo3']
+            unlocks: ['mecanica-clasica', 'inferencia-estadistica', 'procesos-estocasticos'],
+            requirements: ['calculo-varias-variables']
+        },
+        {
+            id: 'analisis-real',
+            name: 'Análisis real',
+            semester: 4,
+            completed: false,
+            unlocks: ['espacios-metricos'],
+            requirements: ['calculo-varias-variables']
+        },
+        {
+            id: 'probabilidades',
+            name: 'Probabilidades',
+            semester: 4,
+            completed: false,
+            unlocks: ['mecanica-clasica', 'inferencia-estadistica', 'procesos-estocasticos'],
+            requirements: ['calculo2']
         },
         {
             id: 'estructuras-algebraicas1',
             name: 'Estructuras algebraicas 1',
             semester: 4,
             completed: false,
-            unlocks: ['didactica-sistemas'],
+            unlocks: ['estructuras-algebraicas2'],
             requirements: ['teoria-numeros']
-        },
-        {
-            id: 'practica-inicial',
-            name: 'Practica docente inicial',
-            semester: 4,
-            completed: false,
-            unlocks: ['practica-comunitaria', 'fundamentos-educacion', 'practica-intermedia'],
-            requirements: []
-        },
-        {
-            id: 'taller-adolescencia',
-            name: 'Taller de aprendizaje y desarrollo adolescente',
-            semester: 4,
-            completed: false,
-            unlocks: ['practica-comunitaria', 'practica-intermedia'],
-            requirements: []
-        },
-        {
-            id: 'educar-diversidad',
-            name: 'Educar en y para la diversidad',
-            semester: 4,
-            completed: false,
-            unlocks: ['practica-comunitaria', 'practica-intermedia'],
-            requirements: []
         },
         
         // 5° Semestre
         {
-            id: 'didactica-calculo',
-            name: 'Didactica del calculo',
+            id: 'metodos-numericos',
+            name: 'Métodos numéricos',
             semester: 5,
             completed: false,
-            unlocks: ['didactica-geometria'],
+            unlocks: ['tesis'],
+            requirements: ['algebra-lineal2', 'programacion']
+        },
+        {
+            id: 'espacios-metricos',
+            name: 'Espacios métricos',
+            semester: 5,
+            completed: false,
+            unlocks: ['medida-integracion', 'tesis'],
             requirements: ['analisis-real']
         },
         {
-            id: 'didactica-sistemas',
-            name: 'Didáctica de los sistemas numéricos',
+            id: 'mecanica-clasica',
+            name: 'Mecánica clásica',
             semester: 5,
             completed: false,
-            unlocks: ['practica-comunitaria', 'practica-intermedia'],
+            unlocks: ['fisica-moderna', 'modelos-lineales', 'series-tiempo', 'tesis'],
+            requirements: ['calculo4', 'probabilidades']
+        },
+        {
+            id: 'inferencia-estadistica',
+            name: 'Inferencia estadística',
+            semester: 5,
+            completed: false,
+            unlocks: ['fisica-moderna', 'modelos-lineales', 'series-tiempo', 'tesis'],
+            requirements: ['calculo4', 'probabilidades']
+        },
+        {
+            id: 'procesos-estocasticos',
+            name: 'Procesos estocásticos aplicados',
+            semester: 5,
+            completed: false,
+            unlocks: ['fisica-moderna', 'modelos-lineales', 'series-tiempo', 'tesis'],
+            requirements: ['calculo4', 'probabilidades']
+        },
+        {
+            id: 'estructuras-algebraicas2',
+            name: 'Estructuras algebraicas 2',
+            semester: 5,
+            completed: false,
+            unlocks: ['tesis'],
             requirements: ['estructuras-algebraicas1']
         },
         {
-            id: 'geometria-euclidiana',
-            name: 'Geometria euclidiana plana',
+            id: 'ingles1',
+            name: 'Inglés 1',
             semester: 5,
             completed: false,
-            unlocks: ['geometria-3d'],
-            requirements: []
-        },
-        {
-            id: 'estadistica1',
-            name: 'Estadistica 1',
-            semester: 5,
-            completed: false,
-            unlocks: ['didactica-estadistica', 'estadistica2'],
-            requirements: ['calculo2']
-        },
-        {
-            id: 'formacion3',
-            name: 'Formacion fundamental 3',
-            semester: 5,
-            completed: false,
-            unlocks: [],
+            unlocks: ['tesis', 'ingles2'],
             requirements: []
         },
         
         // 6° Semestre
         {
-            id: 'geometria-3d',
-            name: 'Geometria 3D/Geometria no euclidiana',
-            semester: 6,
-            completed: false,
-            unlocks: ['didactica-geometria'],
-            requirements: ['geometria-euclidiana']
-        },
-        {
-            id: 'didactica-estadistica',
-            name: 'Didactica de la estadistica',
-            semester: 6,
-            completed: false,
-            unlocks: ['didactica-probabilidad'],
-            requirements: ['estadistica1']
-        },
-        {
-            id: 'practica-comunitaria',
-            name: 'Practica comunitaria',
-            semester: 6,
-            completed: false,
-            unlocks: ['practica-final'],
-            requirements: ['practica-inicial', 'taller-adolescencia', 'educar-diversidad', 'didactica-sistemas']
-        },
-        {
-            id: 'psicologia-social',
-            name: 'Psicología social aplicada en la escuela y su comunidad',
+            id: 'geometria-diferencial',
+            name: 'Geometría diferencial',
             semester: 6,
             completed: false,
             unlocks: [],
-            requirements: []
+            requirements: ['calculo-varias-variables']
         },
         {
-            id: 'fundamentos-educacion',
-            name: 'Fundamentos filosóficos y sociales de la educación',
+            id: 'medida-integracion',
+            name: 'Medida e integración',
             semester: 6,
             completed: false,
             unlocks: [],
-            requirements: ['practica-inicial']
+            requirements: ['espacios-metricos']
         },
         {
-            id: 'ingles1',
-            name: 'Ingles 1',
+            id: 'fisica-moderna',
+            name: 'Física moderna',
             semester: 6,
             completed: false,
-            unlocks: ['ingles2'],
-            requirements: []
+            unlocks: [],
+            requirements: ['mecanica-clasica', 'inferencia-estadistica', 'procesos-estocasticos']
         },
-        
-        // 7° Semestre
+        {
+            id: 'modelos-lineales',
+            name: 'Modelos lineales',
+            semester: 6,
+            completed: false,
+            unlocks: [],
+            requirements: ['mecanica-clasica', 'inferencia-estadistica', 'procesos-estocasticos']
+        },
+        {
+            id: 'series-tiempo',
+            name: 'Series de tiempo',
+            semester: 6,
+            completed: false,
+            unlocks: [],
+            requirements: ['mecanica-clasica', 'inferencia-estadistica', 'procesos-estocasticos']
+        },
         {
             id: 'optativo1',
             name: 'Optativo 1',
-            semester: 7,
+            semester: 6,
             completed: false,
             unlocks: [],
             requirements: []
-        },
-        {
-            id: 'didactica-geometria',
-            name: 'Didactica de la geometria',
-            semester: 7,
-            completed: false,
-            unlocks: ['tecnologia-ensenanza'],
-            requirements: ['didactica-calculo', 'geometria-3d']
-        },
-        {
-            id: 'estadistica2',
-            name: 'Estadistica 2',
-            semester: 7,
-            completed: false,
-            unlocks: ['didactica-probabilidad'],
-            requirements: ['estadistica1']
-        },
-        {
-            id: 'teoria-planificacion',
-            name: 'Teoria y planificacion curricular',
-            semester: 7,
-            completed: false,
-            unlocks: ['evaluacion-aprendizaje'],
-            requirements: []
-        },
-        {
-            id: 'politicas-educativas',
-            name: 'Politicas publicas eduacativas y gestion escolar',
-            semester: 7,
-            completed: false,
-            unlocks: [],
-            requirements: []
-        },
-        {
-            id: 'estrategias-discursivas2',
-            name: 'Estrategias discursivas para comunicar y enseñar el conocimiento disciplinar',
-            semester: 7,
-            completed: false,
-            unlocks: ['taller-investigacion'],
-            requirements: ['estrategias-discursivas1']
         },
         {
             id: 'ingles2',
-            name: 'Ingles 2',
-            semester: 7,
+            name: 'Inglés 2',
+            semester: 6,
             completed: false,
             unlocks: ['ingles3'],
             requirements: ['ingles1']
         },
         
-        // 8° Semestre
-        {
-            id: 'tecnologia-ensenanza',
-            name: 'Uso de la tecnologia para la enseñanza y aprendizaje de la matematica',
-            semester: 8,
-            completed: false,
-            unlocks: ['trabajo-titulo'],
-            requirements: ['metodos-numericos', 'didactica-geometria']
-        },
-        {
-            id: 'didactica-probabilidad',
-            name: 'Didactica de la probabilidad e inferencia',
-            semester: 8,
-            completed: false,
-            unlocks: ['taller-investigacion'],
-            requirements: ['didactica-estadistica', 'estadistica2']
-        },
-        {
-            id: 'practica-intermedia',
-            name: 'Practica docente intermedia',
-            semester: 8,
-            completed: false,
-            unlocks: ['historia-epistemologia', 'taller-investigacion', 'trabajo-titulo', 'identidad-profesional', 'practica-final'],
-            requirements: ['practica-inicial', 'taller-adolescencia', 'educar-diversidad', 'didactica-sistemas']
-        },
-        {
-            id: 'evaluacion-aprendizaje',
-            name: 'Evaluacion en y para el aprendizaje',
-            semester: 8,
-            completed: false,
-            unlocks: [],
-            requirements: ['teoria-planificacion']
-        },
-        {
-            id: 'ingles3',
-            name: 'Ingles 3',
-            semester: 8,
-            completed: false,
-            unlocks: ['ingles4'],
-            requirements: ['ingles2']
-        },
-        
-        // 9° Semestre
+        // 7° Semestre
         {
             id: 'optativo2',
             name: 'Optativo 2',
-            semester: 9,
+            semester: 7,
+            completed: false,
+            unlocks: ['optativo5'],
+            requirements: []
+        },
+        {
+            id: 'optativo3',
+            name: 'Optativo 3',
+            semester: 7,
             completed: false,
             unlocks: [],
             requirements: []
         },
         {
-            id: 'historia-epistemologia',
-            name: 'Historia y epistemologia de la matematica',
-            semester: 9,
+            id: 'optativo4',
+            name: 'Optativo 4',
+            semester: 7,
             completed: false,
-            unlocks: ['practica-final'],
-            requirements: ['practica-intermedia']
+            unlocks: [],
+            requirements: []
         },
         {
-            id: 'taller-investigacion',
-            name: 'Taller de investigacion en didactica de la matematica',
-            semester: 9,
+            id: 'formacion2',
+            name: 'Formación fundamental 2',
+            semester: 7,
             completed: false,
-            unlocks: ['practica-final'],
-            requirements: ['estrategias-discursivas2', 'didactica-probabilidad', 'practica-intermedia']
+            unlocks: [],
+            requirements: []
         },
         {
-            id: 'trabajo-titulo',
-            name: 'Trabajo de titulo',
-            semester: 9,
+            id: 'ingles3',
+            name: 'Inglés 3',
+            semester: 7,
             completed: false,
-            unlocks: ['practica-final'],
-            requirements: ['tecnologia-ensenanza', 'practica-intermedia']
+            unlocks: ['ingles4'],
+            requirements: ['ingles2']
+        },
+        
+        // 8° Semestre
+        {
+            id: 'optativo5',
+            name: 'Optativo 5',
+            semester: 8,
+            completed: false,
+            unlocks: [],
+            requirements: ['optativo2']
         },
         {
-            id: 'identidad-profesional',
-            name: 'Identidad profesional docente',
-            semester: 9,
+            id: 'optativo6',
+            name: 'Optativo 6',
+            semester: 8,
             completed: false,
-            unlocks: ['practica-final'],
-            requirements: ['practica-intermedia']
+            unlocks: [],
+            requirements: []
+        },
+        {
+            id: 'tesis',
+            name: 'Trabajo de tesis',
+            semester: 8,
+            completed: false,
+            unlocks: [],
+            requirements: [
+                'metodos-numericos', 
+                'espacios-metricos', 
+                'mecanica-clasica', 
+                'inferencia-estadistica', 
+                'procesos-estocasticos',
+                'estructuras-algebraicas2',
+                'ingles1'
+            ]
+        },
+        {
+            id: 'formacion3',
+            name: 'Formación fundamental 3',
+            semester: 8,
+            completed: false,
+            unlocks: [],
+            requirements: []
         },
         {
             id: 'ingles4',
-            name: 'Ingles 4',
-            semester: 9,
+            name: 'Inglés 4',
+            semester: 8,
             completed: false,
             unlocks: [],
             requirements: ['ingles3']
-        },
-        
-        // 10° Semestre
-        {
-            id: 'practica-final',
-            name: 'Practica docente final',
-            semester: 10,
-            completed: false,
-            unlocks: [],
-            requirements: ['practica-comunitaria', 'historia-epistemologia', 'taller-investigacion', 'trabajo-titulo', 'identidad-profesional', 'practica-intermedia']
         }
     ];
 
@@ -472,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
             semesters[course.semester].push(course);
         });
         
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 8; i++) {
             if (semesters[i]) {
                 const semesterElement = document.createElement('div');
                 semesterElement.className = 'semester';
